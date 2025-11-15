@@ -1,3 +1,3 @@
-#chai aur backend series
+# chai aur backend series
 This is a video series on backend with javascript
--[Model link](https://app.eraser.io/workspace/YtpZIVOxG1zlDkz?oriin-share)
+- [Model link](https://app.eraser.io/workspace/YtpZIVOxG1zlDkz?oriin-share)
