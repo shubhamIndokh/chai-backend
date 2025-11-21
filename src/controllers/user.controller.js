@@ -22,14 +22,22 @@ const registerUser = asyncHandler(async (req, res) => {
         //.some() check karta hai: “kya array me se KAM SE KAM ek element condition match karta hai?”
         throw new ApiError(400, "All filds are required")
     }
-    const existedUser = User.findOne({
+    const existedUser = await User.findOne({
         $or: [{ username }, { email }]
     })
     if (existedUser) {
         throw new ApiError(409, "User with this email or username already exist")
     }
+     console.log(req.files);
+
     const avatarLocalPath = req.files?.avatar[0]?.path;
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    //const coverImageLocalPath = req.files?.coverImage[0]?.path;
+
+    let coverImageLocalPath;
+    if (req.file && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0) {
+        coverImageLocalPath = req.files.coverImage[0].path;
+    }
+    
     if (!avatarLocalPath) {
         throw new ApiError(400, "Avatar file is required")
     }
