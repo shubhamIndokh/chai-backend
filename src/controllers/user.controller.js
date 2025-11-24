@@ -84,8 +84,8 @@ const loginUser = asyncHandler(async (req, res) => {
     //send cookies
 
     const { email, username, password } = req.body;  //Iska matlab: req.body ke andar jitne fields aaye hain, unme se email, username, aur password ko alag-alag variables me nikaal lo.
-    if (!username || !email) {
-        throw new ApiError(400, "Username or password are required ")
+    if (!username && !email) {
+        throw new ApiError(400, "Username or email are required ")
     }
     const user = await User.findOne({
         $or: [{ username }, { email }]   //Aise documents dhoondo jisme ya to username match kare, ya email match kare.
